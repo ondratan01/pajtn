@@ -17,7 +17,7 @@ print(f"Po {kola} kolech uběhnu {celkoveUbehnu} metrů")
 # print("cena po sleve: ", cenaFinal)
 # print("cena pred slevou: ", cenaBefore)
 
-
+"""""
 cislo = int(input("zadejte cislo: "))
 
 if cislo<10:
@@ -44,3 +44,15 @@ while (cislo>1):
     cyfra+=1
     cislo/=10
 print(f"cislo je {cyfra} ciferne")
+"""""
+
+heslo = input("zadejte heslo: ")
+heslo2=input("zopakujte heslo: ")
+
+if(heslo==heslo2):
+    if(len(heslo) < 8):
+        print("heslo je slabe")
+    else:
+        print("dobra prace")
+else:
+    print("neshoduji se")
