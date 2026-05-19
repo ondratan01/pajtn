@@ -1,4 +1,5 @@
 import random
+import time
 cards = [2,3,4,5,6,7,8,9,10,"A","J","Q"]
 balance = 500
 bet=0
@@ -27,7 +28,9 @@ def hra(balance, vyber, bet):
     while(konec==False):
         print("balance >> "+str(balance))
         bet = int(input("zadejte sazku: "))
-        print("sazka je >> "+str(bet))
+        if(bet>balance):
+            bet=balance
+        print("sazka je >> "+str(bet) + "\n")
         if(bet > balance):
             bet = balance
             balance = 0
@@ -47,7 +50,7 @@ def hra(balance, vyber, bet):
         playerCisla.append(naInt(playerCards[1]))
         dealerCisla.append(naInt(dealerCards[1]))
         print("prvni dve karty - "+ str(playerCards) + "\n soucet hrace => "+str(sum(playerCisla)))
-        print("druha karta dealera - "+ str(dealerCards[1]) + "\n soucet dealera => "+str((dealerCisla[1])))
+        print("druha karta dealera - "+ str(dealerCards[1]) + "\n soucet dealera => "+str((dealerCisla[1]))+ "\n")
 
         
 
@@ -55,6 +58,7 @@ def hra(balance, vyber, bet):
         if(vyber == "hit"):
             playerCards.append(randomkarta())
             playerCisla.append(naInt(playerCards[2]))
+            time.sleep(0.5)
             print("hrac - "+str(playerCards) + "\n soucet hrace => "+str(sum(playerCisla)))
             
         if(sum(playerCisla)>21):
@@ -62,12 +66,14 @@ def hra(balance, vyber, bet):
             return "prohra"
 
         # print("....")
-        print("dealer - "+str(dealerCisla) + "\n soucet dealera => "+str(sum(dealerCisla)))
-        if(sum(dealerCisla)<17):
+        print("dealer - "+str(dealerCisla) + "\n soucet dealera => "+str(sum(dealerCisla))+ "\n")
+        while(sum(dealerCisla)<17):
             dealerCards.append(randomkarta())
             dealerCisla.append(naInt(dealerCards[2]))
-            print("dealer si bere dalsi kartu.. ")
-            print("dealer - "+str(dealerCisla) + "\n soucet dealera => "+str(sum(dealerCisla)))
+            print("dealer si bere dalsi kartu..", end="")
+            time.sleep(1.25)
+            print(".")
+            print("dealer - "+str(dealerCisla) + "\n soucet dealera => "+str(sum(dealerCisla))+ "\n")
 
         if(sum(playerCisla)>sum(dealerCisla)):
             konec == True
